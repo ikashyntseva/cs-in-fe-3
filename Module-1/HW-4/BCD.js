@@ -20,9 +20,17 @@ export class BCD {
     };
   }
 
+  getDigit(digit) {
+    return this.isNegative ? this.complementToNine(digit) : digit;
+  }
+
+  complementToNine(digit) {
+    return 10 + ~digit
+  }
+
   convertToBcd() {
     let result = [];
-    let number = this.number;
+    let number = Math.abs(this.number);
 
     while (number) {
       const numberLength = getNumberLength(number);
@@ -34,9 +42,14 @@ export class BCD {
       let value = 0;
       let pos = 0;
 
+      if (this.isNegative && !result.length) {
+        value |= 1 << (this._bcdDigitSize * this._bcdDigitsLimit);
+      }
+
       while (firstNumber) {
-        let digit = firstNumber % 10;
+        let digit = this.getDigit(firstNumber % 10);
         const shift = pos * this._bcdDigitSize;
+
 
         value |= digit << shift;
         firstNumber = Math.floor(firstNumber / 10);
@@ -66,14 +79,17 @@ export class BCD {
   }
 
   get(ind) {
-    const numberLength = getNumberLength(this.number);
+    const numberLength = getNumberLength(Math.abs(this.number));
     const { col, pos } = this.getShiftData(ind, numberLength);
 
-    const digit = this.numbers[col];
+    let number = this.numbers[col];
+
     const mask = createMask(this._bcdDigitSize, this._bcdDigitSize * (pos + 1));
-    const union = digit & mask;
+    const union = number & mask;
     const shift = pos * this._bcdDigitSize;
 
-    return pos ? union >>> shift : union;
+    const digit = this.getDigit(pos ? union >>> shift : union)
+
+    return digit;
   }
 }
