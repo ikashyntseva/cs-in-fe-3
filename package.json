@@ -1,0 +1,23 @@
+{
+  "name": "cs-in-fe-3",
+  "version": "1.0.0",
+  "description": "Homework for the course Computer science in Frontend",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ikashyntseva/cs-in-fe-3.git"
+  },
+  "author": "Irina Cașințeva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ikashyntseva/cs-in-fe-3/issues"
+  },
+  "homepage": "https://github.com/ikashyntseva/cs-in-fe-3#readme",
+  "devDependencies": {
+    "typescript": "^5.4.3"
+  }
+}
