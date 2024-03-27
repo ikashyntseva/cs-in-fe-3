@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const BCD_1 = require("./BCD");
+let n = new BCD_1.BCD(65536n);
+console.log(n.valueOf());
+console.log(n.get(0));
+console.log(n.get(1));
+console.log(n.get(-1));
+console.log(n.get(-2));
+n = new BCD_1.BCD(-23n);
+console.log(n.valueOf());
+console.log(n.get(0));
+console.log(n.get(1));
+console.log(n.isNegative);
+n = new BCD_1.BCD(10n);
+console.log(n.add(15));
+console.log(n.subtract(10));
